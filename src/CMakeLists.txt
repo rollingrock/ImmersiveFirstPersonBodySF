@@ -1,5 +1,5 @@
 # ---- Options ----
-option(COPY_BUILD "Copy the build output to the Starfield directory." FALSE)
+option(COPY_BUILD "Copy the build output to the Starfield directory." ON)
 
 macro(find_commonlib_path)
 	if (CommonLibName AND NOT ${CommonLibName} STREQUAL "")
@@ -18,14 +18,15 @@ set(CommonLibName "CommonLibSF")
 set_root_directory()
 
 
-	set_from_environment(StarFieldPath)
-	set(FalloutPath ${StarFieldPath})
-	set(StarFieldVersion "StarField")
+set_from_environment(StarFieldPath)
+set(StarFieldPath ${StarFieldPath})
+set(StarFieldVersion "StarField")
+set(COPY_BUILD ON)
 
 find_commonlib_path()
 message(
 	STATUS
-	"Building ${PROJECT_NAME} ${PROJECT_VERSION} for ${StarFieldVersion} at ${FalloutPath} with ${CommonLibName} at ${CommonLibPath}."
+	"Building ${PROJECT_NAME} ${PROJECT_VERSION} for ${StarFieldVersion} at ${StarFieldPath} with ${CommonLibName} at ${CommonLibPath}."
 )
 
 list(APPEND CMAKE_MODULE_PATH "${ROOT_DIR}/cmake")
@@ -146,17 +147,17 @@ install(
 )
 
 if (COPY_BUILD)
-	if (DEFINED FalloutPath)
+	if (DEFINED StarFieldPath)
 		add_custom_command(
 			TARGET ${PROJECT_NAME}
 			POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ${FalloutPath}/Data/sfse/Plugins/
-			COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_PDB_FILE:${PROJECT_NAME}> ${FalloutPath}/Data/sfse/Plugins/
+			COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ${StarFieldPath}/Data/sfse/Plugins/
+			COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_PDB_FILE:${PROJECT_NAME}> ${StarFieldPath}/Data/sfse/Plugins/
 		)
 	else ()
 		message(
 			WARNING
-			"Variable ${FalloutPath} is not defined. Skipping post-build copy command."
+			"Variable ${StarFieldPath} is not defined. Skipping post-build copy command."
 		)
 	endif ()
 endif ()
