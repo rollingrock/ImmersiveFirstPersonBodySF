@@ -11,7 +11,8 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
-        "CMAKE_CXX_FLAGS": "$env{PROJECT_PLATFORM_FLAGS} $env{PROJECT_TEXT_FLAGS} $env{PROJECT_COMPILER_FLAGS} $penv{CXXFLAGS}"
+        "CMAKE_CXX_FLAGS": "$env{PROJECT_PLATFORM_FLAGS} $env{PROJECT_TEXT_FLAGS} $env{PROJECT_COMPILER_FLAGS} $penv{CXXFLAGS}",
+        "PluginAuthor": "$env{SKSEPluginAuthor}"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {

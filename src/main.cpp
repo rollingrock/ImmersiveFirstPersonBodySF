@@ -33,11 +33,9 @@ namespace
 		spdlog::set_pattern("[%Y-%m-%d %H-%M-%S.%e][%-16s:%-4#][%=7l]: %v"s);
 
 		logger::info(
-			"{} v{}.{}.{}"sv,
+			"{} v{}"sv,
 			Plugin::NAME,
-			Plugin::VERSION[0],
-			Plugin::VERSION[1],
-			Plugin::VERSION[2]);
+			Plugin::Version);
 	}
 
 }
