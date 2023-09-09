@@ -1,0 +1,5 @@
+[Bb]uild/
+.vs/
+.vscode/
+*.zip
+*.timestamp
