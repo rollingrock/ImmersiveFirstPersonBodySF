@@ -1,3 +1,7 @@
+#include "include/debug.h"
+
+
+
 
 namespace
 {
@@ -8,6 +12,7 @@ namespace
 		switch (a_message->type) {
 		case SFSE::MessagingInterface::kPostPostLoad:
 			{
+				IFPB::Debug::Install();
 			}
 			break;
 		}
@@ -35,7 +40,7 @@ namespace
 		logger::info(
 			"{} v{}"sv,
 			Plugin::NAME,
-			Plugin::Version);
+			Plugin::Version );
 	}
 
 }
@@ -43,14 +48,14 @@ namespace
 
 extern "C" DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	SFSE::PluginVersionData data{};
-	data.PluginVersion(1);
+	data.PluginVersion(Plugin::Version);
 	data.PluginName(Plugin::NAME);
-	data.AuthorName("RollingRock"sv);
+	data.AuthorName(Plugin::AUTHOR);
 	data.UsesSigScanning(true);
 	data.UsesAddressLibrary(true);
 	data.HasNoStructUse(true);
 	data.IsLayoutDependent(true);
-	data.CompatibleVersions({SFSE::RUNTIME_SF_1_7_23});
+	data.CompatibleVersions({ SFSE::RUNTIME_LATEST });
 
 	return data;
 }();

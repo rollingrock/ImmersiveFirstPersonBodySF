@@ -34,8 +34,10 @@ list(APPEND CMAKE_MODULE_PATH "${ROOT_DIR}/cmake")
 set(SOURCE_DIR "${ROOT_DIR}/src")
 set(SOURCE_FILES
 	"${SOURCE_DIR}/main.cpp"
+	"${SOURCE_DIR}/include/re.h"
+	"${SOURCE_DIR}/include/debug.h"
 	"${SOURCE_DIR}/PCH.h"
-)
+  )
 
 source_group(TREE "${ROOT_DIR}" FILES ${SOURCE_FILES})
 
@@ -60,9 +62,7 @@ add_library(
 	${SOURCE_FILES}
 	"${VERSION_HEADER}"
 	"${CMAKE_CURRENT_BINARY_DIR}/version.rc"
-	"${ROOT_DIR}/.clang-format"
-	#"${ROOT_DIR}/.editorconfig"
-)
+	"${ROOT_DIR}/.clang-format")
 
 target_compile_features(
 	"${PROJECT_NAME}"
