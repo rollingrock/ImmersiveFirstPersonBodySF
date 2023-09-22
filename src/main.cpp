@@ -1,12 +1,8 @@
 #include "include/debug.h"
 
 
-
-
 namespace
 {
-
-
 	void SFSEAPI MessageHandler(SFSE::MessagingInterface::Message* a_message)
 	{
 		switch (a_message->type) {
@@ -42,7 +38,6 @@ namespace
 			Plugin::NAME,
 			Plugin::Version );
 	}
-
 }
 
 

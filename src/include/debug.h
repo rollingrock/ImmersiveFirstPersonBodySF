@@ -93,6 +93,13 @@ namespace IFPB
 						//	fc++;
 
 						detail::toggleVis((RE::NiNode*)data->data3D, false, true);
+
+						unsigned char* bytePtr = reinterpret_cast<unsigned char*>(player);
+						bytePtr += 0xda8;
+						RE::NiNode* fpb = (RE::NiNode*)(*(reinterpret_cast<RE::NiNode**>(bytePtr)));
+
+
+						detail::toggleVis(fpb, true, true);
 						//auto node = data->data3D;
 						//while (node->parent) {
 						//	node = node->parent;
